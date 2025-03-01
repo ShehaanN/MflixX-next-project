@@ -53,7 +53,7 @@ export default function LoginForm({ title }) {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className=" bg-[gray-40] border border-gray-300  rounded-lg text-gray-900 focus:ring-blue-500 focus:border-blue-500 block w-full p-1.5"
-              placeholder="*************"
+              placeholder="password"
             />
           </div>
 
