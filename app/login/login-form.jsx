@@ -6,11 +6,38 @@ import { useState } from "react";
 
 export default function LoginForm({ title }) {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState(""); 
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+
+  const validateForm = () => {
+    if (!email){
+      setEmailError("Email is required");
+      return false;
+    } else{
+      setEmailError("");
+    }
+
+    if (!password){
+      setPasswordError("Password is required");
+      return false;
+    }
+    else{
+      setPasswordError("");
+    }
+
+    return true;
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const isValid = validateForm();
+
+    if (isValid) {
+    //Login form Data Submission
     console.log("formData", { email, password });
+    }
   };
 
   return (
@@ -37,6 +64,9 @@ export default function LoginForm({ title }) {
               className=" bg-[gray-40] border border-gray-300  rounded-lg text-gray-900 focus:ring-blue-500 focus:border-blue-500 block w-full p-1.5"
               placeholder="yourname@gmail.com"
             />
+
+            {emailError &&<div className="text-red-600 text-sm mt-2 ml-2">{emailError}</div>}
+
           </div>
           {/*password*/}
           <div>
@@ -55,6 +85,9 @@ export default function LoginForm({ title }) {
               className=" bg-[gray-40] border border-gray-300  rounded-lg text-gray-900 focus:ring-blue-500 focus:border-blue-500 block w-full p-1.5"
               placeholder="password"
             />
+
+            {passwordError &&<div className="text-red-600 text-sm mt-2 ml-2">{passwordError}</div>}
+
           </div>
 
           <div className="flex flex-row items-start justify-between">
