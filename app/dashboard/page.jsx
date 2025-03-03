@@ -1,5 +1,13 @@
-export default function DashboardPage() {
+import { getMovies } from "@/lib/apis/server";
+
+export default async function DashboardPage() {
   // 1. Add shadcn Card
+  // 2. define/Create Movies GET endpoint
+  // 3. Read the dummy response
+  // 4. Display the movies in the dashboard(UI)
+  const movies = await getMovies();
+  console.log("Movies", movies);
+
   return (
     <main>
       {/*navigation bar */}
