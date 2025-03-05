@@ -41,6 +41,41 @@ const MOVIES = [
     title: "The Lord of the Rings: The Fellowship of the Ring",
     year: 2001,
   },
+  {
+    id: 9,
+    title: "Fight Club",
+    year: 1999,
+  },
+  {
+    id: 10,
+    title: "Forrest Gump",
+    year: 1994,
+  },
+  {
+    id: 11,
+    title: "Inception",
+    year: 2010,
+  },
+  {
+    id: 12,
+    title: "The Lord of the Rings: The Two Towers",
+    year: 2002,
+  },
+  {
+    id: 13,
+    title: "Star Wars: Episode V - The Empire Strikes Back",
+    year: 1980,
+  },
+  {
+    id: 14,
+    title: "The Matrix",
+    year: 1999,
+  },
+  {
+    id: 15,
+    title: "Goodfellas",
+    year: 1990,
+  },
 ];
 
 export const GET = async (req) => {
