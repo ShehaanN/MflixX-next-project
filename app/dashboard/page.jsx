@@ -28,6 +28,10 @@ export default async function DashboardPage() {
           <div className="h-96 bg-purple-400">Div 6</div>
           <div className="h-96 bg-pink-400">Div 7</div>
           <div className="h-96 bg-cyan-400">Div 8</div>
+          <div className="h-96 bg-indigo-400">Div 9</div>
+          <div className="h-96 bg-gray-400">Div 10</div>
+          <div className="h-96 bg-gray-800">Div 11</div>
+          <div className="h-96 bg-blue-700">Div 12</div>
         </div>
       </div>
     </main>
