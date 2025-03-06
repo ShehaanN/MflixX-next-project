@@ -61,21 +61,6 @@ const MOVIES = [
     title: "The Lord of the Rings: The Two Towers",
     year: 2002,
   },
-  {
-    id: 13,
-    title: "Star Wars: Episode V - The Empire Strikes Back",
-    year: 1980,
-  },
-  {
-    id: 14,
-    title: "The Matrix",
-    year: 1999,
-  },
-  {
-    id: 15,
-    title: "Goodfellas",
-    year: 1990,
-  },
 ];
 
 export const GET = async (req) => {
