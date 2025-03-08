@@ -3,33 +3,31 @@
 import { loginUser } from "@/lib/apis/server";
 import { useState } from "react";
 
-
 //client component for CSR
 
 export default function LoginForm({ title }) {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState(""); 
+  const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
   const validateForm = () => {
-    if (!email){
+    if (!email) {
       setEmailError("Email is required");
       return false;
-    } else{
+    } else {
       setEmailError("");
     }
 
-    if (!password){
+    if (!password) {
       setPasswordError("Password is required");
       return false;
-    }
-    else{
+    } else {
       setPasswordError("");
     }
 
     return true;
-  }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -37,11 +35,11 @@ export default function LoginForm({ title }) {
     const isValid = validateForm();
 
     if (isValid) {
-    //Login form Data Submission
-    // console.log("formData", { email:email, password: password });
+      //Login form Data Submission
+      // console.log("formData", { email:email, password: password });
 
-    const login = await loginUser({email:email, password:password});
-    console.log("LOGIN RESPONSE",login);
+      const login = await loginUser({ email: email, password: password });
+      console.log("LOGIN RESPONSE", login);
     }
   };
 
@@ -70,8 +68,9 @@ export default function LoginForm({ title }) {
               placeholder="yourname@gmail.com"
             />
 
-            {emailError &&<div className="text-red-600 text-sm mt-2 ml-2">{emailError}</div>}
-
+            {emailError && (
+              <div className="text-red-600 text-sm mt-2 ml-2">{emailError}</div>
+            )}
           </div>
           {/*password*/}
           <div>
@@ -91,8 +90,11 @@ export default function LoginForm({ title }) {
               placeholder="password"
             />
 
-            {passwordError &&<div className="text-red-600 text-sm mt-2 ml-2">{passwordError}</div>}
-
+            {passwordError && (
+              <div className="text-red-600 text-sm mt-2 ml-2">
+                {passwordError}
+              </div>
+            )}
           </div>
 
           <div className="flex flex-row items-start justify-between">
@@ -130,7 +132,7 @@ export default function LoginForm({ title }) {
 
           <div className="flex text-sm justify-center  font-medium text-gray-500 space-x-1">
             <span>Don't have an account?</span>
-            <a href="#" className="text-blue-700 hover:underline">
+            <a href="/register" className="text-blue-700 hover:underline">
               Sign up
             </a>
           </div>
