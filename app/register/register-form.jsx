@@ -108,7 +108,10 @@ export default function RegisterForm() {
             </div>
           </CardContent>
           <CardFooter className="flex justify-center">
-            <Button className="flex-1" type="submit">
+            <Button
+              className="flex-1 bg-blue-700 hover:bg-blue-800"
+              type="submit"
+            >
               Register
             </Button>
           </CardFooter>
