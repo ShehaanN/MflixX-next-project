@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
+import { registerUser } from "@/lib/apis/server";
 
 const DEFAULT_ERROR = {
   error: false,
@@ -25,16 +26,19 @@ export default function RegisterForm() {
   const handleSubmitForm = async (event) => {
     event?.preventDefault();
     const formData = new FormData(event?.currentTarget);
-    const name = formData.get("name") ?? "";
-    const email = formData.get("email") ?? "";
-    const password = formData.get("password") ?? "";
-    const confirmPassword = formData.get("confirm-password") ?? "";
+    const name = formData.get("name").toString() ?? "";
+    const email = formData.get("email").toString() ?? "";
+    const password = formData.get("password").toString() ?? "";
+    const confirmPassword = formData.get("confirm-password".toString()) ?? "";
 
     // console.log("Form submitted", { name, email, password, confirmPassword });
 
+    //Basic frontend validation logic
     if (name && email && password && confirmPassword) {
       if (password === confirmPassword) {
         setError(DEFAULT_ERROR);
+
+        await registerUser({ name, email, password });
       } else {
         setError({ error: true, message: "Passwords do not match" });
       }
