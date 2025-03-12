@@ -49,7 +49,7 @@ export default function RegisterForm() {
     <div className="flex justify-center items-center min-h-screen">
       <Card className="bg-blue-50 w-[350px]">
         <CardHeader>
-          <CardTitle>Create an account</CardTitle>
+          <CardTitle className="text-xl">Create an account</CardTitle>
           <CardDescription>
             Enter your information to get started
           </CardDescription>
@@ -113,7 +113,7 @@ export default function RegisterForm() {
           </CardContent>
           <CardFooter className="flex justify-center">
             <Button
-              className="flex-1 bg-blue-700 hover:bg-blue-800"
+              className="flex-1 font-medium bg-blue-700 hover:bg-blue-800"
               type="submit"
             >
               Register
