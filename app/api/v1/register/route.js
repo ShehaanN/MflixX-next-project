@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import clientPromise from "@/app/libs/mongodb";
+import bcrypt from "bcrypt";
 
 export const POST = async (req) => {
   try {
@@ -7,12 +8,8 @@ export const POST = async (req) => {
 
     if (!name || !email || !password) {
       return NextResponse.json(
-        {
-          error: "name, email, and password are required",
-        },
-        {
-          status: 400,
-        }
+        { error: "name, email, and password are required" },
+        { status: 400 }
       );
     }
 
@@ -25,12 +22,20 @@ export const POST = async (req) => {
 
     if (existingUser) {
       return NextResponse.json(
-        {
-          error: "User with this email already exists.",
-        },
+        { error: "User with this email already exists." },
         { status: 409 }
       );
     }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+    console.log("Hashed Password", hashedPassword);
+
+    const result = await db.collection("users").insertOne({
+      name,
+      email,
+      password: hashedPassword,
+      createdAt: new Date(),
+    });
 
     return NextResponse.json({ success: true, name, email });
   } catch (error) {
