@@ -8,6 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -22,6 +23,7 @@ const DEFAULT_ERROR = {
 // Keep this as the client component (functional component)
 export default function RegisterForm() {
   const [error, setError] = useState(DEFAULT_ERROR);
+  const [isLoading, setLoading] = useState(false);
 
   const handleSubmitForm = async (event) => {
     event?.preventDefault();
@@ -38,7 +40,15 @@ export default function RegisterForm() {
       if (password === confirmPassword) {
         setError(DEFAULT_ERROR);
 
-        await registerUser({ name, email, password });
+        setLoading(true);
+
+        const registerResp = await registerUser({ name, email, password });
+
+        setLoading(false);
+
+        if (registerResp?.error) {
+          setError({ error: true, message: registerResp.error });
+        }
       } else {
         setError({ error: true, message: "Passwords do not match" });
       }
@@ -115,7 +125,9 @@ export default function RegisterForm() {
             <Button
               className="flex-1 font-medium bg-blue-700 hover:bg-blue-800"
               type="submit"
+              disabled={isLoading}
             >
+              {isLoading && <Loader2 className="animate-spin" />}
               Register
             </Button>
           </CardFooter>

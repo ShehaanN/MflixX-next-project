@@ -13,8 +13,9 @@ export const POST = async (req) => {
       );
     }
 
+    // you can do the further data validation here
+
     const client = await clientPromise();
-    // MflixX is the database name
     const db = client.db("sample_mflix");
 
     const existingUser = await db.collection("users").findOne({ email });
@@ -28,7 +29,7 @@ export const POST = async (req) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    console.log("Hashed Password", hashedPassword);
+    // console.log("Hashed Password", hashedPassword);
 
     const result = await db.collection("users").insertOne({
       name,
@@ -37,7 +38,18 @@ export const POST = async (req) => {
       createdAt: new Date(),
     });
 
-    return NextResponse.json({ success: true, name, email });
+    if (result && result.acknowledged) {
+      //   console.log("MongoDB Result", result);
+      return NextResponse.json({
+        success: true,
+        user: { userId: result.insertedId, name, email },
+      });
+    } else {
+      return NextResponse.json(
+        { error: "User registration failed" },
+        { status: 500 }
+      );
+    }
   } catch (error) {
     console.log("MONGODB Error", error);
     return NextResponse.json(
