@@ -54,7 +54,32 @@ export default function RegisterForm() {
         //   toast.success("Registration successful.");
         // }
 
-        await signUp.email();
+        const { data, error } = await signUp.email(
+          {
+            email: email,
+            password: password,
+            name: name,
+            image: undefined,
+          },
+          {
+            onRequest: () => {
+              //
+            },
+            onSuccess: (ctx) => {
+              console.log("onSuccess", ctx);
+            },
+            onError: (ctx) => {
+              // console.log("onError", ctx);
+              if (ctx) {
+                setError({ error: true, message: ctx.error.message });
+              }
+            },
+          }
+        );
+
+        if (data) {
+          console.log("data", data);
+        }
       } else {
         setError({ error: true, message: "Passwords do not match" });
       }
@@ -65,8 +90,10 @@ export default function RegisterForm() {
     <div className="flex justify-center items-center min-h-screen">
       <Card className="bg-blue-50 w-[350px]">
         <CardHeader>
-          <CardTitle className="text-xl">Create an account</CardTitle>
-          <CardDescription>
+          <CardTitle className="text-xl text-center">
+            Create an account
+          </CardTitle>
+          <CardDescription className="text-xs text-center">
             Enter your information to get started
           </CardDescription>
         </CardHeader>
@@ -113,7 +140,7 @@ export default function RegisterForm() {
 
               <div className="flex justify-center">
                 {error?.error && (
-                  <span className="text-red-600 text-xs text-center">
+                  <span className="text-red-600 text-xs text-center animate-pulse duration-1000">
                     {error.message}
                   </span>
                 )}
@@ -131,8 +158,8 @@ export default function RegisterForm() {
             <Button
               className="flex-1 font-medium bg-blue-700 hover:bg-blue-800"
               type="submit"
+              disabled={isLoading}
             >
-              {/* disabled={isLoading} */}
               {isLoading && <Loader2 className="animate-spin" />}
               Register
             </Button>
