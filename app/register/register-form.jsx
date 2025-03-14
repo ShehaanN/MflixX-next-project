@@ -13,8 +13,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
-import { registerUser } from "@/lib/apis/server";
-import { toast } from "sonner";
+// import { registerUser } from "@/lib/apis/server";
+// import { toast } from "sonner";
+import { signUp } from "@/lib/auth-client";
 
 const DEFAULT_ERROR = {
   error: false,
@@ -41,17 +42,19 @@ export default function RegisterForm() {
       if (password === confirmPassword) {
         setError(DEFAULT_ERROR);
 
-        setLoading(true);
+        // setLoading(true);
 
-        const registerResp = await registerUser({ name, email, password });
+        // const registerResp = await registerUser({ name, email, password });
 
-        setLoading(false);
+        // setLoading(false);
 
-        if (registerResp?.error) {
-          setError({ error: true, message: registerResp.error });
-        } else {
-          toast.success("Registration successful.");
-        }
+        // if (registerResp?.error) {
+        //   setError({ error: true, message: registerResp.error });
+        // } else {
+        //   toast.success("Registration successful.");
+        // }
+
+        await signUp.email();
       } else {
         setError({ error: true, message: "Passwords do not match" });
       }
