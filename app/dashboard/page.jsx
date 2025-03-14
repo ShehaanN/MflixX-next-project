@@ -20,18 +20,10 @@ export default async function DashboardPage() {
   console.log("Movies FE", moviesQuery);
 
   return (
-    <main>
-      {/*navigation bar */}
-      <nav className="bg-blue-300 w-full h-16 flex  justify-start items-center">
-        <div className="container">
-          <h1 className="text-black font-bold text-xl">MflixX Dashboard</h1>
-        </div>
-      </nav>
-
-      {/* Body section */}
-      <div className="container mt-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-          {/* <div className="h-96 bg-green-400">Div 1</div>
+    <div className="space-y-4">
+      <h1 className="text-3xl font-bold">Movies</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        {/* <div className="h-96 bg-green-400">Div 1</div>
           <div className="h-96 bg-yellow-400">Div 2</div>
           <div className="h-96 bg-blue-400">Div 3</div>
           <div className="h-96 bg-orange-400">Div 4</div>
@@ -44,64 +36,63 @@ export default async function DashboardPage() {
           <div className="h-96 bg-gray-800">Div 11</div>
           <div className="h-96 bg-blue-700">Div 12</div> */}
 
-          {moviesQuery?.length &&
-            moviesQuery.map((movie) => (
-              <div key={movie?._id} className="h-[480px] ">
-                <Card className="h-full">
-                  <CardHeader>
-                    <CardTitle className="">
-                      {movie?.title}{" "}
-                      <span className="text-xs text-neutral-400 font-normal">
-                        -{movie?.year ?? "N/A"}
-                      </span>
-                    </CardTitle>
+        {moviesQuery?.length &&
+          moviesQuery.map((movie) => (
+            <div key={movie?._id} className="h-[480px] ">
+              <Card className="h-full">
+                <CardHeader>
+                  <CardTitle className="">
+                    {movie?.title}{" "}
+                    <span className="text-xs text-neutral-400 font-normal">
+                      -{movie?.year ?? "N/A"}
+                    </span>
+                  </CardTitle>
 
-                    <CardDescription className="text-center sr-only">
-                      {movie?.year ?? "N/A"}
-                    </CardDescription>
-                  </CardHeader>
+                  <CardDescription className="text-center sr-only">
+                    {movie?.year ?? "N/A"}
+                  </CardDescription>
+                </CardHeader>
 
-                  <CardContent>
-                    <div className="flex justify-center bg-black w-full h-[220px] mb-4 rounded">
-                      <Image
-                        src={movie?.poster}
-                        alt={movie?.title}
-                        width={200}
-                        height={400}
-                        className="h-full w-auto object-contain"
-                        priority={true}
-                      />
+                <CardContent>
+                  <div className="flex justify-center bg-black w-full h-[220px] mb-4 rounded">
+                    <Image
+                      src={movie?.poster}
+                      alt={movie?.title}
+                      width={200}
+                      height={400}
+                      className="h-full w-auto object-contain"
+                      priority={true}
+                    />
+                  </div>
+                  <div className="flex flex-col justify-between h-[154px]">
+                    {/* Movie plot */}
+                    <p className="line-clamp-3 text-xs">{movie?.plot}</p>
+                    {/* Movie Genres*/}
+                    <div className="text-sm text-blue-900 font-semibold">
+                      {movie?.genres?.length && movie?.genres?.join(" / ")}
                     </div>
-                    <div className="flex flex-col justify-between h-[154px]">
-                      {/* Movie plot */}
-                      <p className="line-clamp-3 text-xs">{movie?.plot}</p>
-                      {/* Movie Genres*/}
-                      <div className="text-sm text-blue-900 font-semibold">
-                        {movie?.genres?.length && movie?.genres?.join(" / ")}
-                      </div>
-                      <div className="flex flex-row justify-between items-center">
-                        <Badge variant="success" className="font-medium">
-                          Rated: {movie?.rated ?? "N/A"}
-                        </Badge>
-                        <div
-                          className="flex flex-row gap-1 items-center"
-                          title="IMDB Rating"
-                        >
-                          <FaStar className="text-yellow-500 " />
-                          <span className="text-sm font-semibold">
-                            {" "}
-                            {movie?.imdb?.rating ?? "N/A"}/10
-                          </span>
-                        </div>
+                    <div className="flex flex-row justify-between items-center">
+                      <Badge variant="success" className="font-medium">
+                        Rated: {movie?.rated ?? "N/A"}
+                      </Badge>
+                      <div
+                        className="flex flex-row gap-1 items-center"
+                        title="IMDB Rating"
+                      >
+                        <FaStar className="text-yellow-500 " />
+                        <span className="text-sm font-semibold">
+                          {" "}
+                          {movie?.imdb?.rating ?? "N/A"}/10
+                        </span>
                       </div>
                     </div>
-                  </CardContent>
-                  <CardFooter className="flex justify-between"></CardFooter>
-                </Card>
-              </div>
-            ))}
-        </div>
+                  </div>
+                </CardContent>
+                <CardFooter className="flex justify-between"></CardFooter>
+              </Card>
+            </div>
+          ))}
       </div>
-    </main>
+    </div>
   );
 }
