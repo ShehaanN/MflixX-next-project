@@ -14,7 +14,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
 // import { registerUser } from "@/lib/apis/server";
-// import { toast } from "sonner";
+import { toast } from "sonner";
 import { signUp } from "@/lib/auth-client";
 
 const DEFAULT_ERROR = {
@@ -42,18 +42,14 @@ export default function RegisterForm() {
       if (password === confirmPassword) {
         setError(DEFAULT_ERROR);
 
-        // setLoading(true);
-
         // const registerResp = await registerUser({ name, email, password });
-
-        // setLoading(false);
 
         // if (registerResp?.error) {
         //   setError({ error: true, message: registerResp.error });
         // } else {
-        //   toast.success("Registration successful.");
-        // }
 
+        // }
+        setLoading(true);
         const { data, error } = await signUp.email(
           {
             email: email,
@@ -67,6 +63,7 @@ export default function RegisterForm() {
             },
             onSuccess: (ctx) => {
               console.log("onSuccess", ctx);
+              toast.success("Registration successful.");
             },
             onError: (ctx) => {
               // console.log("onError", ctx);
@@ -76,6 +73,7 @@ export default function RegisterForm() {
             },
           }
         );
+        setLoading(false);
 
         if (data) {
           console.log("data", data);
