@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import clientPromise from "@/app/libs/mongodb";
+import clientPromise from "@/lib/mongodb";
 //dummy array of movies
 
 // const MOVIES = [

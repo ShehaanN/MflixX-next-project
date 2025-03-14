@@ -128,8 +128,8 @@ export default function RegisterForm() {
             <Button
               className="flex-1 font-medium bg-blue-700 hover:bg-blue-800"
               type="submit"
-              disabled={isLoading}
             >
+              {/* disabled={isLoading} */}
               {isLoading && <Loader2 className="animate-spin" />}
               Register
             </Button>
