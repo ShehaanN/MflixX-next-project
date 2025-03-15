@@ -1,7 +1,9 @@
 "use client";
 
-import { loginUser } from "@/lib/apis/server";
+// import { loginUser } from "@/lib/apis/server";
 import { useState } from "react";
+import { signIn } from "@/lib/auth-client";
+import { redirect } from "next/navigation";
 
 //client component for CSR
 
@@ -37,9 +39,24 @@ export default function LoginForm({ title }) {
     if (isValid) {
       //Login form Data Submission
       // console.log("formData", { email:email, password: password });
+      // const login = await loginUser({ email: email, password: password });
+      // console.log("LOGIN RESPONSE", login);
 
-      const login = await loginUser({ email: email, password: password });
-      console.log("LOGIN RESPONSE", login);
+      await signIn.email(
+        {
+          email,
+          password,
+        },
+        {
+          onSuccess: () => {
+            redirect("/dashboard");
+          },
+          onError: (ctx) => {
+            console.log(ctx.error.message);
+            setError(ctx.error.message);
+          },
+        }
+      );
     }
   };
 
