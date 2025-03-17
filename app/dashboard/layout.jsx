@@ -1,12 +1,13 @@
 import React from "react";
 import UserNav from "./components/user-nav";
+import SidePanel from "./components/side-panel";
 
 export default function DashboardLayout({ children }) {
   return (
     <div className="flex h-screen overflow-hidden bg-gray-100">
       {/* Side Panel */}
       <aside className="w-64 overflow-y-auto border-r bg-white shadow-lg">
-        Side Panel
+        <SidePanel />
       </aside>
       <div className="flex flex-1 flex-col overflow-hidden">
         {/* Dashboard Header */}
