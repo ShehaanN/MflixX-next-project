@@ -16,6 +16,7 @@ export default async function DashboardPage() {
   // 2. define/Create Movies GET endpoint
   // 3. Read the dummy response
   // 4. Display the movies in the dashboard(UI) / Render Data set in the UI
+
   const moviesQuery = await getMovies();
   console.log("Movies FE", moviesQuery);
 
