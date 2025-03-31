@@ -24,6 +24,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { MultiSelect } from "@/components/multi-select";
 import { GENRES, RATINGS } from "@/lib/constants";
 import { createMovie } from "@/lib/actions/movie";
+import { toast } from "sonner";
 
 // client component
 export default function AddMovieForm() {
@@ -58,6 +59,7 @@ export default function AddMovieForm() {
       });
       setLoading(false);
       if (resp.success) {
+        toast.success("Movie Added successful.");
         // toast({
         //   variant: "success",
         //   title: "Movie Added Successfully!",
