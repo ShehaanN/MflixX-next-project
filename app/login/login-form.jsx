@@ -2,7 +2,7 @@
 
 // import { loginUser } from "@/lib/apis/server";
 import { useState } from "react";
-import { signIn } from "@/lib/auth-client";
+import { signIn } from "@/app/lib/auth-client";
 import { redirect } from "next/navigation";
 
 //client component for CSR
@@ -37,11 +37,6 @@ export default function LoginForm({ title }) {
     const isValid = validateForm();
 
     if (isValid) {
-      //Login form Data Submission
-      // console.log("formData", { email:email, password: password });
-      // const login = await loginUser({ email: email, password: password });
-      // console.log("LOGIN RESPONSE", login);
-
       await signIn.email(
         {
           email,

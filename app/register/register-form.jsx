@@ -15,7 +15,8 @@ import { Label } from "@/components/ui/label";
 import Link from "next/link";
 // import { registerUser } from "@/lib/apis/server";
 import { toast } from "sonner";
-import { signUp } from "@/lib/auth-client";
+import { signUp } from "@/app/lib/auth-client";
+import { useRouter } from "next/navigation";
 
 const DEFAULT_ERROR = {
   error: false,
@@ -26,6 +27,7 @@ const DEFAULT_ERROR = {
 export default function RegisterForm() {
   const [error, setError] = useState(DEFAULT_ERROR);
   const [isLoading, setLoading] = useState(false);
+  const router = useRouter();
 
   const handleSubmitForm = async (event) => {
     event?.preventDefault();
@@ -35,20 +37,10 @@ export default function RegisterForm() {
     const password = formData.get("password").toString() ?? "";
     const confirmPassword = formData.get("confirm-password".toString()) ?? "";
 
-    // console.log("Form submitted", { name, email, password, confirmPassword });
-
-    //Basic frontend validation logic
     if (name && email && password && confirmPassword) {
       if (password === confirmPassword) {
         setError(DEFAULT_ERROR);
 
-        // const registerResp = await registerUser({ name, email, password });
-
-        // if (registerResp?.error) {
-        //   setError({ error: true, message: registerResp.error });
-        // } else {
-
-        // }
         setLoading(true);
         const { data, error } = await signUp.email(
           {
@@ -64,6 +56,10 @@ export default function RegisterForm() {
             onSuccess: (ctx) => {
               console.log("onSuccess", ctx);
               toast.success("Registration successful.");
+              // Redirect to login page after successful registration
+              setTimeout(() => {
+                router.push("/login");
+              }, 1500); // Small delay to show the success toast
             },
             onError: (ctx) => {
               // console.log("onError", ctx);
@@ -86,7 +82,7 @@ export default function RegisterForm() {
   };
   return (
     <div className="flex justify-center items-center min-h-screen">
-      <Card className="bg-blue-50 w-[350px]">
+      <Card className="bg-white w-[350px]">
         <CardHeader>
           <CardTitle className="text-xl text-center">
             Create an account
