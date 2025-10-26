@@ -1,38 +1,92 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1 align="center">
+  🎬 MflixX – Movie Dashboard Application
+</h1>
 
-# Next.js 
+<p align="center">
+  <strong>A modern, full-stack movie management dashboard built with Next.js, MongoDB, Tailwind CSS, Shadcn/UI and Better Auth.</strong>
+</p>
 
-## Getting Started
+---
 
-First, run the development server:
+## 📖 Overview
+
+**MflixX** is a full-stack **Movie Dashboard Application** inspired by [IMDb](https://www.imdb.com/).  
+It allows administrators to manage movies (CRUD), view active logged-in users, and monitor the platform in real time.  
+The app includes **secure authentication**, a **mobile-friendly UI**, and a clean, minimal dashboard layout built using **Next.js**, **MongoDB**, and **Tailwind CSS** with **ShadCN/UI components**.
+
+---
+
+## ✨ Key Features
+
+### 🎞️ Movie Management
+- Add, edit, delete, and view movie details (CRUD operations)
+- Upload poster images, trailers, or metadata
+- Filter and search movies by genre, rating, or release year
+
+### 👥 User Management
+- Secure **authentication** using **Better Auth**
+- View **active logged-in users** directly on the dashboard
+- Manage user sessions and roles
+- Display total users, login activity, and online status
+
+### 🧑‍💻 Admin Dashboard
+- Intuitive dashboard for managing both users and movie content
+- Analytics summary (movie count, user activity, etc.)
+- Real-time updates from MongoDB
+
+### 📱 Responsive UI
+- Fully mobile-responsive design
+- Built with **Tailwind CSS** and **ShadCN/UI**
+- Adaptive layout for mobile, tablet, and desktop views
+
+### 🔐 Authentication
+- Implemented using **Better Auth** with secure JWT session handling
+- Protected routes for admin access
+- Logout and session expiry handling
+
+### ⚡ Performance
+- Built with **Next.js App Router** for lightning-fast performance
+- Uses **Server Actions** for optimized data fetching
+- Optimized MongoDB queries for scalability
+
+---
+
+## 🧱 Tech Stack
+
+| Category | Technology |
+|-----------|-------------|
+| **Frontend** | Next.js (App Router), React |
+| **Backend** | Next.js API Routes, MongoDB |
+| **Database** | MongoDB Atlas |
+| **Authentication** | Better Auth |
+| **UI Framework** | Tailwind CSS + ShadCN/UI |
+| **Icons** | Lucide React |
+| **Version Control** | Git & GitHub |
+
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the repository
+  ```bash
+git clone https://github.com/yourusername/MflixX.git
+cd MflixX
+
+```
+### 2. Install dependencies
 
 ```bash
+npm install
+```
+### 3. Setup environment variables
+
+```env
+MONGODB_URI=your_mongodb_connection_string
+BETTER_AUTH_SECRET=your_better_auth_secret_key
+```
+### 4. Run the development server
+```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
