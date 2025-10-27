@@ -8,6 +8,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import MovieData from "./movie-data";
+import UserData from "./user-data";
 
 export default function MoviesPage() {
   return (
@@ -26,6 +27,15 @@ export default function MoviesPage() {
             }
           >
             <MovieData />
+            <Card className="mt-3">
+              <CardHeader>
+                <CardTitle>Users</CardTitle>
+                <CardDescription>
+                  Active users on the MFlix dashboard.
+                </CardDescription>
+              </CardHeader>
+              <UserData />
+            </Card>
           </Suspense>
         </CardContent>
       </Card>
